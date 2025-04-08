@@ -1,0 +1,13 @@
+2025-04-08 16:58:51,945 - INFO - Fetched 5 papers from arXiv for topic: Deep Learning
+2025-04-08 16:58:51,947 - INFO - Researcher agent initialized for topic: Deep Learning
+2025-04-08 16:58:51,948 - INFO - Created task for topic: Deep Learning, year: 2025, papers: 5
+2025-04-08 16:58:51,950 - INFO - Starting research crew execution for topic: Deep Learning
+2025-04-08 16:58:52,000 - INFO - 
+LiteLLM completion() model= llama3.2; provider = ollama
+2025-04-08 17:03:57,498 - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-04-08 17:03:57,502 - INFO - Wrapper: Completed Call, calling success_handler
+2025-04-08 17:03:57,549 - INFO - HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-04-08 17:03:57,557 - INFO - HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-04-08 17:03:57,569 - INFO - Research task completed successfully.
+2025-04-08 17:03:57,605 - INFO - HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-04-08 17:03:57,651 - INFO - HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"

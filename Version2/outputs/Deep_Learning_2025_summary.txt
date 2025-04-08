@@ -1,0 +1,25 @@
+Here are the summaries for the 5 research papers published in 2025 about **Deep Learning** from arXiv:
+
+1. **CREA: A Collaborative Multi-Agent Framework for Creative Content Generation with Diffusion Models**
+   Authors: Kavana Venkatesh, Connor Dunlop, Pinar Yanardag
+
+   This paper introduces CREA, a novel multi-agent collaborative framework that mimics the human creative process to generate visually compelling content. The framework leverages a team of specialized AI agents who dynamically collaborate to conceptualize, generate, critique, and enhance images. Through extensive qualitative and quantitative evaluations, the authors demonstrate that CREA significantly outperforms state-of-the-art methods in diversity, semantic alignment, and creative transformation.
+
+2. **URECA: Unique Region Caption Anything**
+   Authors: Sangbeom Lim, Junwan Kim, Heeji Yoon, Jaewoo Jung, Seungryong Kim
+
+   This paper introduces URECA dataset, a large-scale dataset tailored for multi-granularity region captioning. The authors present URECA, a novel captioning model designed to effectively encode multi-granularity regions. Their approach introduces dynamic mask modeling and a high-resolution mask encoder to enhance caption uniqueness. Experiments show that URECA achieves state-of-the-art performance on the URECA dataset and generalizes well to existing region-level captioning benchmarks.
+
+3. **InteractVLM: 3D Interaction Reasoning from 2D Foundational Models**
+   Authors: Sai Kumar Dwivedi, Dimitrije Antić, Shashank Tripathi, Omid Taheri, Cordelia Schmid, Michael J. Black, Dimitrios Tzionas
+
+   This paper introduces InteractVLM, a novel method to estimate 3D contact points on human bodies and objects from single in-the-wild images. The authors harness the broad visual knowledge of large Vision-Language Models (VLMs) fine-tuned with limited 3D contact data. They propose a novel Render-Localize-Lift module that embeds 3D body and object surfaces in 2D space via multi-view rendering, trains a novel multi-view localization model to infer contacts in 2D, and lifts these to 3D. InteractVLM outperforms existing work on contact estimation and facilitates 3D reconstruction from an in-the-wild image.
+
+4. **Ionomeric extracellular matrices for dynamic soft robotic tissue engineering devices through protein sulfonation**
+   Authors: Matthew K Burgess, Ryan T Murray, Veronica M Lucian, Zekun Liu, Robin O Cleveland, Callum J Beeston, Malavika Nair
+
+   This paper presents the development of a novel class of polymers called ionomeric extracellular matrices (iECMs). The authors utilize linker-mediated conjugation of sulfonic acid biomolecules to the backbone of an extracellular matrix protein. They illustrate the potential of iECMs as the first electromechanical actuating material platform derived entirely from ECM materials, paving the way for dynamic and soft-robotic platforms for a wide range of tissue engineering applications.
+
+5. **(No title provided)**
+
+   Authors: Not specified (appears to be an incomplete or non-standard paper format)
