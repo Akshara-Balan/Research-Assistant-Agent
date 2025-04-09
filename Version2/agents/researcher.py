@@ -3,6 +3,7 @@ from crewai import Agent
 from langchain_ollama import OllamaLLM
 import logging
 import os
+from datetime import datetime
 
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
@@ -13,16 +14,15 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# Use a working model (e.g., llama3.2 or phi3:3.8b)
-llm = OllamaLLM(model="ollama/llama3.2")  # Adjust to phi3:3.8b if preferred
+llm = OllamaLLM(model="ollama/llama3.2:latest")  # Or phi3:3.8b
 
 def get_researcher(topic: str) -> Agent:
-    """Create a Research Analyst agent with a dynamic goal based on the user's topic."""
+    current_year = datetime.now().year
     researcher = Agent(
         role="Research Analyst",
-        goal=f"Identify and summarize the latest research papers on '{topic}' from 2024",
+        goal=f"Identify and summarize the latest research papers on '{topic}' from {current_year} downward",
         backstory=(
-            "An expert analyst with a PhD in '{topic}' , skilled in "
+            "An expert analyst with a PhD in computational linguistics, skilled in "
             "extracting academic insights from diverse sources across all domains "
             "and presenting them clearly."
         ),
@@ -30,5 +30,5 @@ def get_researcher(topic: str) -> Agent:
         llm=llm,
         verbose=True,
     )
-    logging.info(f"Researcher agent initialized for topic: {topic}")
+    logging.info(f"Researcher agent initialized for topic: {topic}, year range: {current_year - 5}-{current_year}")
     return researcher

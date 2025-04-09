@@ -6,7 +6,7 @@ This version will read a topic from user and then give a report where the report
 
 ## Version2
 
-This version will read the arxiv papers and give response accordingly
+This version will read the papers from google scholar and give response accordingly. There is no hallucination. Implemented a frontend module.
 
 ## Setup
 
