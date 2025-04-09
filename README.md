@@ -4,7 +4,7 @@
 
 A modular AI-powered research assistant built with CrewAI, LangChain, and Ollama. This assistant identifies and summarizes the latest academic trends in AI, focusing on topics like LLM alignment, using local LLMs such as LLaMA 3.2. The generated report is a hallucination from the training data of the llama3.2 LLM.
 
-Technologies Used:
+### Technologies Used:
 
 * CrewAI
 
@@ -21,7 +21,7 @@ An AI-powered research assistant that finds and summarizes recent academic paper
 
 Visit ``` http://localhost:5000 ``` once the server is running to use the assistant.
 
-Features:
+### Features:
 
 🔍 Topic-based search across recent research publications (last 5 years)
 
@@ -35,7 +35,7 @@ Features:
 
 📁 Logs and saves results to logs/ and outputs/ folders
 
-Techologies Used:
+### Techologies Used:
 
 * Flask - Web Framework
 
