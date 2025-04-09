@@ -5,6 +5,7 @@ import logging
 import os
 import requests
 from datetime import datetime
+from utils.ollama_wrapper import ollama_completion
 
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
@@ -16,24 +17,24 @@ logging.basicConfig(
 )
 
 def fetch_serpapi_papers(topic: str, start_year: int = datetime.now().year, max_papers: int = 5) -> list:
-    """Fetch real, relevant papers from Google Scholar via SerpAPI, from start_year downward."""
-    api_key = "e2401a14b790c9d4a8a5ddb30a18ea4aa9b757406302a392265544762ed2712d"  # Your SerpAPI key
+    api_key = "e2401a14b790c9d4a8a5ddb30a18ea4aa9b757406302a392265544762ed2712d"
     url = "https://serpapi.com/search"
     params = {
         "engine": "google_scholar",
-        "q": topic,  # No year in query to allow broader search
+        "q": topic,
         "api_key": api_key,
-        "num": max_papers * 2,  # Fetch extra to filter by year and relevance
-        "as_ylo": start_year - 5,  # Look back 5 years from current year (e.g., 2020-2025)
-        "as_yhi": start_year,     # Up to current year
-        "sort": "pubdate"         # Sort by publication date (newest first)
+        "num": max_papers * 2,
+        "as_ylo": start_year - 5,
+        "as_yhi": start_year,
+        "sort": "pubdate"
     }
     try:
         response = requests.get(url, params=params)
         response.raise_for_status()
         data = response.json()
+        logging.info(f"SerpAPI raw response for '{topic}': {data.get('organic_results', [])[:3]}")
         papers = []
-        topic_terms = topic.lower().split()  # Split topic for relevance check
+        topic_terms = topic.lower().split()
         for result in data.get("organic_results", []):
             if len(papers) >= max_papers:
                 break
@@ -44,8 +45,7 @@ def fetch_serpapi_papers(topic: str, start_year: int = datetime.now().year, max_
             try:
                 pub_year = int(pub_year)
             except ValueError:
-                pub_year = start_year  # Default to current year if parsing fails
-            # Ensure relevance: at least one topic term in title or summary
+                pub_year = start_year
             if any(term in title.lower() or term in summary.lower() for term in topic_terms):
                 papers.append({
                     "title": title,
@@ -53,16 +53,14 @@ def fetch_serpapi_papers(topic: str, start_year: int = datetime.now().year, max_
                     "summary": summary,
                     "year": pub_year
                 })
-        # Sort by year in reverse chronological order
         papers.sort(key=lambda x: x["year"], reverse=True)
-        logging.info(f"Fetched {len(papers)} relevant papers from SerpAPI for topic: {topic}, years: {min(p['year'] for p in papers)}-{max(p['year'] for p in papers)}")
+        logging.info(f"Fetched {len(papers)} relevant papers for topic: {topic}")
         return papers
     except Exception as e:
         logging.error(f"Failed to fetch SerpAPI papers: {str(e)}")
         return []
 
 def create_research_task(topic: str, start_year: int = datetime.now().year, max_papers: int = 5) -> Task:
-    """Create a task with real, relevant papers in reverse chronological order."""
     papers = fetch_serpapi_papers(topic, start_year, max_papers)
     if papers:
         description = (
@@ -72,13 +70,15 @@ def create_research_task(topic: str, start_year: int = datetime.now().year, max_
             + "\n".join([f"- {p['title']} ({p['year']}) by {', '.join(p['authors'])}: {p['summary']}" 
                         for p in papers])
         )
-        expected_output = f"A list of {len(papers)} relevant papers with title, year, authors, and a detailed summary of each, sorted newest to oldest."
+        # Execute Ollama directly here
+        summary = ollama_completion(description)
+        expected_output = summary  # Use the result directly
     else:
         description = (
             f"No relevant research papers were found for '{topic}' on Google Scholar from {start_year - 5} to {start_year}. "
             f"Please try a different topic or broaden your search terms."
         )
-        expected_output = "A message indicating no relevant papers were found."
+        expected_output = description
     
     task = Task(
         description=description,
@@ -86,5 +86,5 @@ def create_research_task(topic: str, start_year: int = datetime.now().year, max_
         agent=get_researcher(topic),
         output_file=f"outputs/{topic.replace(' ', '_')}_{start_year}_summary.txt"
     )
-    logging.info(f"Created task for topic: {topic}, year range: {start_year - 5}-{start_year}, found papers: {len(papers)}")
+    logging.info(f"Created research task for topic: {topic}, year range: {start_year - 5}-{start_year}, found papers: {len(papers)}")
     return task

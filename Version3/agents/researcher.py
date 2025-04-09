@@ -1,9 +1,9 @@
 # agents/researcher.py
 from crewai import Agent
-from langchain_ollama import OllamaLLM
 import logging
 import os
 from datetime import datetime
+from utils.ollama_wrapper import ollama_llm
 
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
@@ -13,8 +13,6 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
-
-llm = OllamaLLM(model="ollama/llama3.2:latest")  # Or phi3:3.8b
 
 def get_researcher(topic: str) -> Agent:
     current_year = datetime.now().year
@@ -27,7 +25,7 @@ def get_researcher(topic: str) -> Agent:
             "and presenting them clearly."
         ),
         allow_delegation=False,
-        llm=llm,
+        llm=ollama_llm,  # Direct Ollama LLM
         verbose=True,
     )
     logging.info(f"Researcher agent initialized for topic: {topic}, year range: {current_year - 5}-{current_year}")
