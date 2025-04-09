@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Assistant</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #333; }
+        .form-container { max-width: 600px; }
+        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; }
+        input[type="submit"] { padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
+        input[type="submit"]:hover { background-color: #0056b3; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Research Assistant</h1>
+    <div class="form-container">
+        <form method="POST">
+            <label for="topic">Enter Research Topic (e.g., 'Explainable AI in Neural Networks'):</label>
+            <input type="text" id="topic" name="topic" required>
+            <input type="submit" value="Search Papers">
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
