@@ -23,17 +23,17 @@ Visit ``` http://localhost:5000 ``` once the server is running to use the assist
 
 ### Features:
 
-🔍 Topic-based search across recent research publications (last 5 years)
+* Topic-based search across recent research publications (last 5 years)
 
-🤖 Agent-based summarization using LLaMA 3.2 via Ollama
+* Agent-based summarization using LLaMA 3.2 via Ollama
 
-📑 Clear, structured paper summaries: title, year, authors, findings
+* Clear, structured paper summaries: title, year, authors, findings
 
-🌐 Fetches real academic results from Google Scholar via SerpAPI
+* Fetches real academic results from Google Scholar via SerpAPI
 
-💻 Clean web interface powered by Flask
+* Clean web interface powered by Flask
 
-📁 Logs and saves results to logs/ and outputs/ folders
+* Logs and saves results to logs/ and outputs/ folders
 
 ### Techologies Used:
 
