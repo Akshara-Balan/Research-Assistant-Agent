@@ -17,7 +17,7 @@ logging.basicConfig(
 )
 
 def fetch_serpapi_papers(topic: str, start_year: int = datetime.now().year, max_papers: int = 5) -> list:
-    api_key = "e2401a14b790c9d4a8a5ddb30a18ea4aa9b757406302a392265544762ed2712d"
+    api_key = "YOUR API"
     url = "https://serpapi.com/search"
     params = {
         "engine": "google_scholar",
